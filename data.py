@@ -1,11 +1,19 @@
 import sqlite3
 
-connection = sqlite3.connect("test.db")
+from faker import Faker
+fake = Faker()
 
-cursor = connection.cursor()
 
-command1 = """CREATE TABLE IF NOT EXISTS
-stores(store_id INTEGER PRIMARY KEY, location TEXT)
-"""
+conn = sqlite3.connect("test.db")
 
-cursor.execute(command1)
+# Create Cursor
+cur = conn.cursor()
+
+for _ in range(5):
+    user = fake.profile()
+    addUser = "INSERT INTO customers VALUES(NULL, ?, ?, ?)"
+    cur.execute(addUser, (user["name"], user["birthdate"], user["sex"]))
+
+# comm = """CREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, sex TEXT)"""
+
+# cur.execute(comm)
