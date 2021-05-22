@@ -1,5 +1,6 @@
 import sqlite3
 from random import randint, uniform
+from pprint import pprint
 
 from faker import Faker
 fake = Faker()
@@ -40,6 +41,14 @@ def dummy_epp_data():
     conn.commit()
 
 
-cur.execute(
-    "SELECT epp_id, SUM(epp) FROM epp LEFT OUTER JOIN employees ON epp.emp_id = employees.emp_id")
-print(cur.fetchall())
+search = """SELECT epp.emp_id,employees.name,sum(epp.epp) AS total_epp, sum(round((4.3 - epp.strike_price) * epp.epp,2)) as value_today, sum(round((20 - epp.strike_price) * epp.epp,2)) as value_2024
+FROM epp
+INNER JOIN employees
+ON epp.emp_id = employees.emp_id
+GROUP BY epp.emp_id
+ORDER BY epp.emp_id"""
+
+cur.execute(search)
+data = cur.fetchall()[0]
+
+pprint(f"{data[0]} - {data[1]} - {data[2]}")
