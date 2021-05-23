@@ -1,3 +1,5 @@
+import json
+import requests
 import sqlite3
 from random import randint, uniform
 from pprint import pprint
@@ -11,17 +13,25 @@ conn = sqlite3.connect("test.db")
 cur = conn.cursor()
 
 
+def send_event(event_data):
+    webhook_url = "https://webhook.site/cdeb7ea5-22c8-4459-8b43-7b9389241638"
+
+    r = requests.post(webhook_url, data=json.dumps(event_data), headers={
+        "Content-Type": "application/json"})
+
+
 def create_table():
     comm = """CREATE TABLE employees (emp_id INTEGER PRIMARY KEY, name TEXT, age INTEGER, sex TEXT)"""
     cur.execute(comm)
 
 
 def create_users():
-    for _ in range(1000):
+    for _ in range(10):
         user = fake.profile()
         addUser = "INSERT INTO employees VALUES(NULL, ?, ?, ?)"
         cur.execute(addUser, (user["name"], user["birthdate"], user["sex"]))
-
+        send_event(
+            {"user": user["name"], "sex": user["sex"]})
     conn.commit()
 
 
@@ -50,5 +60,6 @@ ORDER BY epp.emp_id"""
 
 cur.execute(search)
 data = cur.fetchall()[0]
+create_users()
 
 pprint(f"{data[0]} - {data[1]} - {data[2]}")
