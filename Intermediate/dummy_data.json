@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "first_name": "Dione",
+        "last_name": "Marris",
+        "email": "dmarris0@virginia.edu",
+        "gender": "Non-binary",
+        "ip_address": "235.87.65.94"
+    },
+    {
+        "id": 2,
+        "first_name": "Trudi",
+        "last_name": "Luberti",
+        "email": "tluberti1@nymag.com",
+        "gender": "Polygender",
+        "ip_address": "146.1.5.186"
+    },
+    {
+        "id": 3,
+        "first_name": "Orazio",
+        "last_name": "Pagen",
+        "email": "opagen2@sbwire.com",
+        "gender": "Agender",
+        "ip_address": "114.148.167.137"
+    },
+    {
+        "id": 4,
+        "first_name": "Cloe",
+        "last_name": "Stone",
+        "email": "cstone3@de.vu",
+        "gender": "Male",
+        "ip_address": "100.165.151.86"
+    },
+    {
+        "id": 5,
+        "first_name": "Brook",
+        "last_name": "Furmonger",
+        "email": "bfurmonger4@weibo.com",
+        "gender": "Polygender",
+        "ip_address": "68.0.158.111"
+    }
+]
