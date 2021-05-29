@@ -1,20 +1,10 @@
-def split(list, delim):
-    temp = ""
-    for i in list:
-        temp += i
-        temp += delim
+import argparse
 
-    return temp
+parser = argparse.ArgumentParser()
+parser.add_argument("-p", "--path", nargs=1)
+parser.add_argument("-t", "--type", nargs=1)
+parser.add_argument("-o", '--output', action="store_true")
 
+args = parser.parse_args()
 
-words = ["hello", "world", "this", "will", "be", "a", "string"]
-delims = ["-", ":", " ", "+"]
-
-for d in delims:
-    print(split(words, d))
-
-
-NUMBER = 0
-NUMBER = 10
-
-print(NUMBER)
+print(args.type[0])
