@@ -2,6 +2,8 @@ import requests
 import json
 import concurrent.futures
 
+# Tutorial about threathing: https://betterprogramming.pub/building-an-imagedownloader-with-multiprocessing-in-python-44aee36e0424
+
 baseUrl = "https://jsonplaceholder.typicode.com/photos/"
 urls = []
 
