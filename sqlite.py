@@ -16,6 +16,7 @@ time_t = """
     SELECT strftime('%Y', age) as birth_year, COUNT(strftime('%Y', age)) as count FROM employees GROUP BY birth_year HAVING count > 28 ORDER BY count
 """
 
+
 # cur.execute(desc)
 cur.execute(time_t)
 print(cur.fetchall())
