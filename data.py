@@ -51,6 +51,11 @@ def dummy_epp_data():
     conn.commit()
 
 
+def create_image_data():
+    comm = """CREATE TABLE files (emp_id INTEGER PRIMARY KEY, file BLOB, image BLOB)"""
+    cur.execute(comm)
+
+
 search = """SELECT epp.emp_id,employees.name,sum(epp.epp) AS total_epp, sum(round((4.3 - epp.strike_price) * epp.epp,2)) as value_today, sum(round((20 - epp.strike_price) * epp.epp,2)) as value_2024
 FROM epp
 INNER JOIN employees
@@ -60,6 +65,6 @@ ORDER BY epp.emp_id"""
 
 cur.execute(search)
 data = cur.fetchall()[0]
-create_users()
+# create_users()
 
 pprint(f"{data[0]} - {data[1]} - {data[2]}")
