@@ -13,3 +13,5 @@ with open("./images/austin-wade-X6Uj51n5CE8-unsplash.jpg.txt", "r") as f:
     with open("test.jpg", "wb") as img:
         bytesImg = f.read().encode('utf-8')
         img.write(base64.decodebytes(bytesImg))
+
+

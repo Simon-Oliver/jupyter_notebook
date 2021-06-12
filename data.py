@@ -3,8 +3,8 @@ import requests
 import sqlite3
 from random import randint, uniform
 from pprint import pprint
-
 from faker import Faker
+
 fake = Faker()
 
 
@@ -52,8 +52,16 @@ def dummy_epp_data():
 
 
 def create_image_data():
-    comm = """CREATE TABLE files (emp_id INTEGER PRIMARY KEY, file BLOB, image BLOB)"""
+    comm = """CREATE TABLE files (file_id INTEGER PRIMARY KEY, file BLOB, image BLOB, emp_id INTEGER,FOREIGN KEY (emp_id) REFERENCES employees(emp_id))"""
     cur.execute(comm)
+
+
+def dummy_file_data():
+    with open("./images/austin-wade-X6Uj51n5CE8-unsplash.jpg", "rb") as binIMG:
+        addFile = "INSERT INTO files VALUES(?, NULL, ?,?)"
+        cur.execute(addFile, (randint(0, 100000),
+                              binIMG.read(), randint(1, 5000)))
+    conn.commit()
 
 
 search = """SELECT epp.emp_id,employees.name,sum(epp.epp) AS total_epp, sum(round((4.3 - epp.strike_price) * epp.epp,2)) as value_today, sum(round((20 - epp.strike_price) * epp.epp,2)) as value_2024
@@ -66,5 +74,7 @@ ORDER BY epp.emp_id"""
 cur.execute(search)
 data = cur.fetchall()[0]
 # create_users()
+create_image_data()
+dummy_file_data()
 
 pprint(f"{data[0]} - {data[1]} - {data[2]}")
