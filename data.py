@@ -69,7 +69,7 @@ FROM epp
 INNER JOIN employees
 ON epp.emp_id = employees.emp_id
 GROUP BY epp.emp_id
-ORDER BY epp.emp_id"""
+ORDER BY epp.emp_id"""  
 
 cur.execute(search)
 data = cur.fetchall()[0]
